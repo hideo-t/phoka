@@ -137,22 +137,46 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 .hero-scroll::after{content:'↓';font-size:20px}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
 
-/* Hero video embed */
+/* Hero video slider */
 .hero-video-wrap{
   position:relative;z-index:1;
-  display:flex;flex-direction:column;align-items:center;gap:12px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
 }
-.hero-video-phone{
+.hero-slider{
   background:#111;border-radius:24px;
   box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.15);
   overflow:hidden;width:100%;aspect-ratio:9/16;max-height:480px;
   position:relative;
 }
-.hero-video-phone video{
-  width:100%;height:100%;object-fit:cover;display:block;
+.hero-slider video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .5s ease;
+  pointer-events:none;
 }
-.hero-video-label{
-  font-size:11px;letter-spacing:.2em;opacity:.65;color:var(--white);text-transform:uppercase;
+.hero-slider video.active{opacity:1;pointer-events:auto}
+/* prev/next arrows */
+.slider-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  z-index:10;background:rgba(0,0,0,.45);color:#fff;border:none;
+  border-radius:50%;width:36px;height:36px;font-size:16px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:.2s;backdrop-filter:blur(4px);
+}
+.slider-arrow:hover{background:rgba(0,0,0,.7)}
+.slider-prev{left:8px}
+.slider-next{right:8px}
+/* dots */
+.slider-dots{
+  display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+  max-width:200px;
+}
+.slider-dot{
+  width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);
+  border:none;cursor:pointer;transition:.2s;padding:0;
+}
+.slider-dot.active{background:var(--coral);transform:scale(1.3)}
+.slider-count{
+  font-size:11px;letter-spacing:.15em;opacity:.6;color:var(--white);
 }
 
 /* Pakuo floating button */
@@ -501,14 +525,22 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
       </div>
     </div>
     <div class="hero-video-wrap">
-      <div class="hero-video-phone">
-        <video
-          src="images/hero.mp4"
-          autoplay muted loop playsinline
-          preload="auto"
-        ></video>
+      <div class="hero-slider" id="heroSlider">
+        <video src="images/hero-videos/797491471.572952.mp4" class="active" autoplay muted playsinline preload="auto"></video>
+        <video src="images/hero-videos/797491471.622654.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.662695.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.717032.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.756085.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.800731.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.843834.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.865197.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.887159.mp4" muted playsinline preload="none"></video>
+        <video src="images/hero-videos/797491471.909393.mp4" muted playsinline preload="none"></video>
+        <button class="slider-arrow slider-prev" onclick="slideHero(-1)" aria-label="前へ">❮</button>
+        <button class="slider-arrow slider-next" onclick="slideHero(1)" aria-label="次へ">❯</button>
       </div>
-      <p class="hero-video-label">🎥 実物動画</p>
+      <div class="slider-dots" id="sliderDots"></div>
+      <p class="slider-count" id="sliderCount">1 / 10</p>
     </div>
   </div>
   <div class="hero-scroll">SCROLL</div>
@@ -919,20 +951,73 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 </footer>
 
 <script>
-// スクロールリビール
+// ===== スクロールリビール =====
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
 }, {threshold: 0.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ハンバーガー: 外クリックで閉じる
+// ===== ハンバーガー: 外クリックで閉じる =====
 document.addEventListener('click', e => {
   const menu = document.querySelector('.mobile-menu');
   const ham = document.querySelector('.hamburger');
   if(!menu.contains(e.target) && !ham.contains(e.target)) menu.classList.remove('open');
 });
 
-// パクオ君バブル（初回表示）
+// ===== ヒーロー動画スライダー =====
+(function(){
+  const videos = Array.from(document.querySelectorAll('#heroSlider video'));
+  const dotsEl = document.getElementById('sliderDots');
+  const countEl = document.getElementById('sliderCount');
+  let current = 0;
+  let autoTimer = null;
+
+  // ドット生成
+  videos.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', (i+1) + '番目の動画');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(idx) {
+    const dots = dotsEl.querySelectorAll('.slider-dot');
+    // 現在の動画を停止・非表示
+    videos[current].pause();
+    videos[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    // 次の動画を表示・再生
+    current = (idx + videos.length) % videos.length;
+    const v = videos[current];
+    v.preload = 'auto';
+    v.classList.add('active');
+    dots[current].classList.add('active');
+    countEl.textContent = (current + 1) + ' / ' + videos.length;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => goTo(current + 1), 6000);
+  }
+
+  // 動画終了時に次へ
+  videos.forEach((v, i) => {
+    v.addEventListener('ended', () => goTo(i + 1));
+  });
+
+  // 最初の動画を再生
+  videos[0].play().catch(() => {});
+  resetAuto();
+
+  // グローバル公開（矢印ボタン用）
+  window.slideHero = (dir) => goTo(current + dir);
+})();
+
+// ===== パクオ君バブル（初回表示） =====
 setTimeout(() => {
   const bubble = document.createElement('div');
   bubble.className = 'pakuo-bubble';
