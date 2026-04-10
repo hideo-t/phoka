@@ -129,17 +129,19 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 /* Hero layout */
 .hero-content{
   position:relative;z-index:1;color:var(--white);
-  max-width:1100px;margin:0 auto;padding:32px 24px 40px;
-  display:flex;flex-direction:column;gap:32px;
+  max-width:1100px;margin:0 auto;padding:24px 24px 40px;
+  display:flex;flex-direction:column;gap:24px;
 }
 /* 上段: シーサー・動画・守礼門 */
 .hero-top-row{
+  position:relative;z-index:2;
+  width:100vw;
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  width:100%;align-items:center;
+  grid-template-columns:33.333vw 33.333vw 33.334vw;
+  align-items:center;
 }
 .hero-deco-img{
-  display:block;width:80%;max-width:180px;height:auto;
+  display:block;width:70%;max-width:200px;height:auto;
   object-fit:contain;margin:0 auto;
   filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));
 }
@@ -532,9 +534,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 =========================== -->
 <section id="hero">
   <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <!-- 上段: シーサー / 動画 / 守礼門 -->
-    <div class="hero-top-row">
+  <!-- 上段: シーサー / 動画 / 守礼門 （ビューポート幅で3等分） -->
+  <div class="hero-top-row">
       <img src="images/hero-sisa.jpg" alt="シーサー" class="hero-deco-img" fetchpriority="high">
       <div class="hero-video-wrap">
         <div class="hero-slider" id="heroSlider">
@@ -555,7 +556,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
       <p class="slider-count" id="sliderCount">1 / 10</p>
     </div>
       <img src="images/hero-syuri.jpg" alt="守礼門" class="hero-deco-img" fetchpriority="high">
-    </div><!-- /hero-top-row -->
+  </div><!-- /hero-top-row -->
+  <div class="hero-content">
     <!-- 下段: テキスト -->
     <div class="hero-text">
       <p class="hero-eyebrow">Park Homes Okinawa</p>
