@@ -126,15 +126,28 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 #hero{position:relative;min-height:100svh;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{display:none}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,45,94,.45) 0%,rgba(21,96,168,.30) 50%,rgba(13,45,94,.40) 100%)}
-.hero-content{position:relative;z-index:1;color:var(--white);padding:40px 24px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:center}
-.hero-text{text-align:left}
-.hero-eyebrow{font-size:12px;letter-spacing:.4em;opacity:.8;margin-bottom:20px;text-transform:uppercase}
-.hero-title{font-size:clamp(28px,4vw,52px);font-weight:700;line-height:1.25;margin-bottom:20px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
-.hero-sub{font-size:clamp(14px,1.6vw,17px);opacity:.88;margin-bottom:32px;line-height:1.7}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.15em;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounce 2s infinite}
-.hero-scroll::after{content:'↓';font-size:20px}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+/* Hero layout */
+.hero-content{
+  position:relative;z-index:1;color:var(--white);
+  max-width:1100px;margin:0 auto;padding:32px 24px 40px;
+  display:flex;flex-direction:column;gap:32px;
+}
+/* 上段: シーサー・動画・守礼門 */
+.hero-top-row{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.hero-deco-img{
+  width:20%;max-width:180px;height:auto;
+  object-fit:contain;flex-shrink:0;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));
+}
+/* 下段: テキスト */
+.hero-text{text-align:center}
+.hero-eyebrow{font-size:12px;letter-spacing:.4em;opacity:.8;margin-bottom:16px;text-transform:uppercase}
+.hero-title{font-size:clamp(26px,4vw,52px);font-weight:700;line-height:1.25;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);opacity:.88;margin-bottom:28px;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.hero-scroll{display:none}
 
 /* Hero video slider */
 .hero-video-wrap{
@@ -360,33 +373,16 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 
   /* Hero mobile */
   #hero{min-height:100svh}
-  #hero{min-height:auto;display:block;position:relative}
-  .hero-bg{position:absolute;inset:0;height:auto}
-  .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,45,94,.35) 0%,rgba(13,45,94,.25) 100%)}
-  .hero-content{
-    position:relative;z-index:1;grid-template-columns:1fr;gap:0;
-    padding:0;background:transparent;width:100%;
-  }
-  .hero-text{
-    text-align:center;padding:28px 20px 24px;
-    background:rgba(13,45,94,.30);
-    min-height:340px;
-    display:flex;flex-direction:column;justify-content:center;
-  }
-  .hero-eyebrow{font-size:10px;letter-spacing:.25em;margin-bottom:12px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-  .hero-title{font-size:clamp(24px,7vw,36px);margin-bottom:14px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
-  .hero-sub{font-size:14px;margin-bottom:24px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:300px;margin:0 auto}
+  .hero-content{padding:20px 14px 28px;gap:16px}
+  .hero-top-row{gap:8px}
+  .hero-deco-img{width:22%;max-width:110px}
+  .hero-eyebrow{font-size:10px;margin-bottom:10px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .hero-title{font-size:clamp(20px,7vw,32px);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+  .hero-sub{font-size:13px;margin-bottom:18px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:10px;max-width:280px;margin:0 auto}
   .hero-btns .btn{width:100%;justify-content:center}
-  .btn-lg{padding:16px 20px;font-size:15px}
-  .hero-scroll{display:none}
-  .hero-video-wrap{
-    order:1;background:rgba(10,20,40,.85);
-    padding:20px 16px 28px;
-    display:flex;flex-direction:column;align-items:center;gap:12px;
-  }
-  .hero-video-phone{max-height:340px;border-radius:16px;width:100%;max-width:200px}
+  .btn-lg{padding:14px 20px;font-size:15px}
+  .hero-video-phone{max-height:280px}
   .hero-video-label{font-size:10px}
 
   /* Appeal cards mobile */
@@ -536,25 +532,12 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 =========================== -->
 <section id="hero">
   <div class="hero-overlay"></div>
-  <!-- 左上: シーサー -->
-  <img src="images/hero-sisa.jpg" alt="シーサー" class="hero-deco hero-deco-left" fetchpriority="high">
-  <!-- 右上: 守礼門 -->
-  <img src="images/hero-syuri.jpg" alt="守礼門" class="hero-deco hero-deco-right" fetchpriority="high">
   <div class="hero-content">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Park Homes Okinawa</p>
-      <h1 class="hero-title">沖縄の海に、<br>もうひとつの暮らし。</h1>
-      <p class="hero-sub">
-        塩害・台風・暑さに耐える「沖縄仕様」の鉄骨トレーラーハウス。<br>
-        製造から輸送・設置・メンテナンスまで、一貫対応。
-      </p>
-      <div class="hero-btns">
-        <a href="https://hideo-t.github.io/phoka/contact/" class="btn btn-coral btn-lg">無料見積もり →</a>
-        <a href="#lineup" class="btn btn-outline-white btn-lg">商品を見る</a>
-      </div>
-    </div>
-    <div class="hero-video-wrap">
-      <div class="hero-slider" id="heroSlider">
+    <!-- 上段: シーサー / 動画 / 守礼門 -->
+    <div class="hero-top-row">
+      <img src="images/hero-sisa.jpg" alt="シーサー" class="hero-deco-img" fetchpriority="high">
+      <div class="hero-video-wrap">
+        <div class="hero-slider" id="heroSlider">
         <video src="images/hero-videos/797491471.572952.mp4" class="active" autoplay muted playsinline preload="auto"></video>
         <video src="images/hero-videos/797491471.622654.mp4" muted playsinline preload="none"></video>
         <video src="images/hero-videos/797491471.662695.mp4" muted playsinline preload="none"></video>
@@ -571,8 +554,22 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
       <div class="slider-dots" id="sliderDots"></div>
       <p class="slider-count" id="sliderCount">1 / 10</p>
     </div>
-  </div>
-  <div class="hero-scroll">SCROLL</div>
+      <img src="images/hero-syuri.jpg" alt="守礼門" class="hero-deco-img" fetchpriority="high">
+    </div><!-- /hero-top-row -->
+    <!-- 下段: テキスト -->
+    <div class="hero-text">
+      <p class="hero-eyebrow">Park Homes Okinawa</p>
+      <h1 class="hero-title">沖縄の海に、<br>もうひとつの暮らし。</h1>
+      <p class="hero-sub">
+        塩害・台風・暑さに耐える「沖縄仕様」の鉄骨トレーラーハウス。<br>
+        製造から輸送・設置・メンテナンスまで、一貫対応。
+      </p>
+      <div class="hero-btns">
+        <a href="https://hideo-t.github.io/phoka/contact/" class="btn btn-coral btn-lg">無料見積もり →</a>
+        <a href="#lineup" class="btn btn-outline-white btn-lg">商品を見る</a>
+      </div>
+    </div>
+  </div><!-- /hero-content -->
 </section>
 
 <!-- モバイル固定CTAバー -->
