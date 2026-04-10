@@ -106,7 +106,7 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
   box-shadow:0 8px 32px rgba(0,0,0,.12);min-width:180px;padding:8px;
   z-index:300;
 }
-.nav-item:hover .dropdown{display:block}
+.nav-item.open .dropdown{display:block}
 .dropdown a{display:block;padding:8px 14px;font-size:13px;color:var(--text);border-radius:8px;transition:.15s}
 .dropdown a:hover{background:var(--bg);color:var(--blue)}
 .nav-cta{background:var(--coral)!important;color:var(--white)!important;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;transition:.2s!important}
@@ -957,8 +957,23 @@ const obs = new IntersectionObserver(entries => {
 }, {threshold: 0.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ===== ハンバーガー: 外クリックで閉じる =====
+// ===== ドロップダウン: クリック式 =====
+document.querySelectorAll('.nav-item > span').forEach(trigger => {
+  trigger.addEventListener('click', e => {
+    e.stopPropagation();
+    const item = trigger.parentElement;
+    const isOpen = item.classList.contains('open');
+    // 他をすべて閉じる
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+// 外クリックでドロップダウンを閉じる
 document.addEventListener('click', e => {
+  if(!e.target.closest('.nav-item')) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('open'));
+  }
+  // モバイルメニュー
   const menu = document.querySelector('.mobile-menu');
   const ham = document.querySelector('.hamburger');
   if(!menu.contains(e.target) && !ham.contains(e.target)) menu.classList.remove('open');
