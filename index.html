@@ -123,12 +123,12 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 /* ===========================
    HERO
 =========================== */
-#hero{position:relative;display:flex;flex-direction:column;overflow:hidden}
+#hero{position:relative;display:flex;flex-direction:column;overflow:hidden;background:#e8f4f8}
 .hero-bg{display:none}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,45,94,.45) 0%,rgba(21,96,168,.30) 50%,rgba(13,45,94,.40) 100%)}
+.hero-overlay{display:none}
 /* Hero layout */
 .hero-content{
-  position:relative;z-index:1;color:var(--white);
+  position:relative;z-index:1;color:var(--navy);
   max-width:1100px;margin:0 auto;padding:16px 24px 32px;
   display:flex;flex-direction:column;gap:16px;
 }
@@ -148,9 +148,9 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 }
 /* 下段: テキスト */
 .hero-text{text-align:center}
-.hero-eyebrow{font-size:12px;letter-spacing:.4em;opacity:.8;margin-bottom:16px;text-transform:uppercase}
-.hero-title{font-size:clamp(26px,4vw,52px);font-weight:700;line-height:1.25;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-.hero-sub{font-size:clamp(14px,1.6vw,17px);opacity:.88;margin-bottom:28px;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+.hero-eyebrow{font-size:12px;letter-spacing:.4em;opacity:.7;margin-bottom:16px;text-transform:uppercase;color:var(--blue)}
+.hero-title{font-size:clamp(26px,4vw,52px);font-weight:700;line-height:1.25;margin-bottom:16px;color:var(--navy)}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);margin-bottom:28px;line-height:1.7;color:var(--text)}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .hero-scroll{display:none}
 
@@ -570,7 +570,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
       </p>
       <div class="hero-btns">
         <a href="https://hideo-t.github.io/phoka/contact/" class="btn btn-coral btn-lg">無料見積もり →</a>
-        <a href="#lineup" class="btn btn-outline-white btn-lg">商品を見る</a>
+        <a href="#lineup" class="btn btn-outline-blue btn-lg">商品を見る</a>
       </div>
     </div>
   </div><!-- /hero-content -->
