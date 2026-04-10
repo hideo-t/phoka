@@ -194,6 +194,37 @@ td.total-pk{
   td.item{font-size:12px;}
   .price-main{font-size:16px;}
 }
+
+/* ── CTA フッター ── */
+.cta-footer{
+  margin-top:56px; padding:32px 28px;
+  background:var(--navy); border-radius:var(--r);
+  text-align:center;
+}
+.cta-label{
+  font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.45); margin-bottom:18px;
+}
+.cta-row{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+}
+.btn{
+  padding:12px 24px; border-radius:6px;
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:13px; font-weight:500; cursor:pointer;
+  text-decoration:none; display:inline-block; transition:opacity .15s;
+  white-space:nowrap;
+}
+.btn:hover{opacity:.82;}
+.btn-ai{background:#fff; color:var(--navy);}
+.btn-green{background:var(--green); color:#fff;}
+.btn-line{background:#06c755; color:#fff;}
+@media(max-width:520px){
+  .cta-row{flex-direction:column; align-items:center;}
+  .btn{width:100%; text-align:center;}
+  .cta-footer{padding:24px 16px;}
+}
+.btn-compare{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
@@ -377,6 +408,18 @@ td.total-pk{
       ※他社A表示価格は公式サイト掲載のスケルトン本体価格（税込）。水回り・内装・沖縄仕様オプションは別途加算が必要です。<br>
       ※台風対策工事・ガス工事は両社とも別途。
     </p>
+  </div>
+
+
+  <!-- ── CTA フッター ── -->
+  <div class="cta-footer">
+    <div class="cta-label">お気軽にご相談ください</div>
+    <div class="cta-row">
+      <a href="#" class="btn btn-ai" onclick="return false;">🤖 AIパクオ君に相談する</a>
+      <a href="../contact/" class="btn btn-green">📋 AI無料見積もり</a>
+      <a href="https://lin.ee/xxxxxx" class="btn btn-line">💬 LINEで聞く</a>
+      <a href="https://hideo-t.github.io/phoka/pages/abc-compare.html" class="btn btn-compare">📊 他社との価格比較を見る</a>
+    </div>
   </div>
 
 </div>
