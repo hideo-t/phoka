@@ -134,11 +134,12 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 }
 /* 上段: シーサー・動画・守礼門 */
 .hero-top-row{
-  display:flex;align-items:center;justify-content:center;gap:16px;
+  display:flex;align-items:center;justify-content:space-evenly;
+  width:100%;gap:0;
 }
 .hero-deco-img{
-  width:20%;max-width:180px;height:auto;
-  object-fit:contain;flex-shrink:0;
+  flex:1;min-width:0;max-width:200px;height:auto;
+  object-fit:contain;
   filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));
 }
 /* 下段: テキスト */
@@ -151,15 +152,14 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 
 /* Hero video slider */
 .hero-video-wrap{
-  position:relative;z-index:1;
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-  flex:0 0 auto;
+  flex:1.5;min-width:0;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
 }
 .hero-slider{
   background:#111;border-radius:24px;
   box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.15);
-  overflow:hidden;width:100%;aspect-ratio:9/16;max-height:720px;
-  position:relative;width:300px;
+  overflow:hidden;aspect-ratio:9/16;max-height:520px;
+  position:relative;width:100%;
 }
 .hero-slider video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -375,8 +375,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
   /* Hero mobile */
   #hero{min-height:100svh}
   .hero-content{padding:20px 14px 28px;gap:16px}
-  .hero-top-row{gap:8px}
-  .hero-deco-img{width:22%;max-width:110px}
+  .hero-top-row{gap:0}
+  .hero-deco-img{max-width:100px}
   .hero-eyebrow{font-size:10px;margin-bottom:10px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
   .hero-title{font-size:clamp(20px,7vw,32px);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
   .hero-sub{font-size:13px;margin-bottom:18px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
