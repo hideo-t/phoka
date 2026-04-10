@@ -127,14 +127,33 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,45,94,.72) 0%,rgba(21,96,168,.55) 60%,rgba(13,45,94,.45) 100%)}
-.hero-content{position:relative;z-index:1;color:var(--white);text-align:center;padding:40px 24px;max-width:800px;margin:0 auto}
+.hero-content{position:relative;z-index:1;color:var(--white);padding:40px 24px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:center}
+.hero-text{text-align:left}
 .hero-eyebrow{font-size:12px;letter-spacing:.4em;opacity:.8;margin-bottom:20px;text-transform:uppercase}
-.hero-title{font-size:clamp(32px,5.5vw,60px);font-weight:700;line-height:1.25;margin-bottom:20px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
-.hero-sub{font-size:clamp(15px,2vw,19px);opacity:.88;margin-bottom:40px;line-height:1.7}
-.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-title{font-size:clamp(28px,4vw,52px);font-weight:700;line-height:1.25;margin-bottom:20px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);opacity:.88;margin-bottom:32px;line-height:1.7}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
 .hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.15em;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bounce 2s infinite}
 .hero-scroll::after{content:'↓';font-size:20px}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* Hero YouTube Shorts embed */
+.hero-video-wrap{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.hero-video-phone{
+  background:#111;border-radius:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 3px rgba(255,255,255,.15);
+  overflow:hidden;width:100%;aspect-ratio:9/16;max-height:480px;
+  position:relative;
+}
+.hero-video-phone iframe{
+  width:100%;height:100%;border:none;display:block;
+}
+.hero-video-label{
+  font-size:11px;letter-spacing:.2em;opacity:.65;color:var(--white);text-transform:uppercase;
+}
 
 /* Pakuo floating button */
 .pakuo-float{
@@ -305,14 +324,18 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 
   /* Hero mobile */
   #hero{min-height:100svh}
-  .hero-content{padding:24px 20px}
+  .hero-content{padding:24px 20px;grid-template-columns:1fr;gap:28px}
+  .hero-text{text-align:center}
   .hero-eyebrow{font-size:10px;letter-spacing:.25em;margin-bottom:12px}
-  .hero-title{font-size:clamp(28px,8vw,40px);margin-bottom:14px}
-  .hero-sub{font-size:14px;margin-bottom:28px}
-  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:300px;margin:0 auto 28px}
+  .hero-title{font-size:clamp(26px,8vw,38px);margin-bottom:14px}
+  .hero-sub{font-size:14px;margin-bottom:24px}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:300px;margin:0 auto}
   .hero-btns .btn{width:100%;justify-content:center}
   .btn-lg{padding:16px 20px;font-size:15px}
   .hero-scroll{display:none}
+  .hero-video-wrap{order:-1}
+  .hero-video-phone{max-height:300px;border-radius:16px}
+  .hero-video-label{font-size:10px}
 
   /* Appeal cards mobile */
   .appeal-card{padding:24px 20px}
@@ -456,15 +479,29 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Park Homes Okinawa</p>
-    <h1 class="hero-title">沖縄の海に、<br>もうひとつの暮らし。</h1>
-    <p class="hero-sub">
-      塩害・台風・暑さに耐える「沖縄仕様」の鉄骨トレーラーハウス。<br>
-      製造から輸送・設置・メンテナンスまで、一貫対応。
-    </p>
-    <div class="hero-btns">
-      <a href="https://hideo-t.github.io/phoka/contact/" class="btn btn-coral btn-lg">無料見積もり →</a>
-      <a href="#lineup" class="btn btn-outline-white btn-lg">商品を見る</a>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Park Homes Okinawa</p>
+      <h1 class="hero-title">沖縄の海に、<br>もうひとつの暮らし。</h1>
+      <p class="hero-sub">
+        塩害・台風・暑さに耐える「沖縄仕様」の鉄骨トレーラーハウス。<br>
+        製造から輸送・設置・メンテナンスまで、一貫対応。
+      </p>
+      <div class="hero-btns">
+        <a href="https://hideo-t.github.io/phoka/contact/" class="btn btn-coral btn-lg">無料見積もり →</a>
+        <a href="#lineup" class="btn btn-outline-white btn-lg">商品を見る</a>
+      </div>
+    </div>
+    <div class="hero-video-wrap">
+      <div class="hero-video-phone">
+        <iframe
+          src="https://www.youtube.com/embed/4k1wUOs63IQ?rel=0&modestbranding=1"
+          title="パークホームズオキナワ 沖縄トレーラーハウス"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="hero-video-label">🎥 動画で見る</p>
     </div>
   </div>
   <div class="hero-scroll">SCROLL</div>
