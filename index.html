@@ -89,6 +89,8 @@ html{scroll-padding-top:68px}
 nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:108px;max-width:1100px;margin:0 auto;padding:0 24px}
 .nav-logo img{height:96px;width:auto}
+.nav-deco{height:96px;width:auto;object-fit:contain;opacity:.85;flex-shrink:0}
+@media(max-width:768px){.nav-deco{height:60px}}
 .nav-links{display:flex;gap:4px;align-items:center}
 
 /* dropdown */
@@ -379,7 +381,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
   /* Hero mobile */
   #hero{min-height:100svh}
   .hero-content{padding:20px 14px 28px;gap:16px}
-  .hero-deco-img{max-width:70px}
+  .hero-deco-img{display:none}
   .hero-eyebrow{font-size:10px;margin-bottom:10px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
   .hero-title{font-size:clamp(20px,7vw,32px);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
   .hero-sub{font-size:13px;margin-bottom:18px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
@@ -450,9 +452,11 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
 =========================== -->
 <nav>
   <div class="nav-inner">
+    <img src="images/hero-sisa.jpg" alt="シーサー" class="nav-deco" aria-hidden="true">
     <a href="https://hideo-t.github.io/phoka/" class="nav-logo">
       <img src="logopkw.jpg" alt="パークホームズオキナワ">
     </a>
+    <img src="images/hero-syuri.jpg" alt="守礼門" class="nav-deco" aria-hidden="true">
     <div class="nav-links">
 
       <!-- 3つの理由 -->
