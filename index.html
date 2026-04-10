@@ -41,7 +41,7 @@ h1,h2,h3{line-height:1.4}
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
 
 /* ===== BUTTONS ===== */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;border:2px solid transparent;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;border:2px solid transparent;text-align:center;min-height:48px}
 .btn-primary{background:var(--blue);color:var(--white);border-color:var(--blue)}
 .btn-primary:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 20px rgba(21,96,168,.35)}
 .btn-coral{background:var(--coral);color:var(--white);border-color:var(--coral)}
@@ -50,16 +50,17 @@ h1,h2,h3{line-height:1.4}
 .btn-outline-white:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
 .btn-outline-blue{background:var(--white);color:var(--blue);border-color:var(--blue)}
 .btn-outline-blue:hover{background:var(--blue);color:var(--white);transform:translateY(-2px)}
-.btn-lg{padding:18px 36px;font-size:17px}
+.btn-lg{padding:16px 32px;font-size:16px}
 
 /* ===== SECTION ===== */
-.section{padding:96px 0}
+.section{padding:80px 0}
 .section-gray{background:var(--bg)}
 .section-eyebrow{font-size:11px;letter-spacing:.3em;color:var(--blue);font-weight:700;text-transform:uppercase;margin-bottom:12px}
-.section-title{font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--navy);margin-bottom:12px}
+.section-title{font-size:clamp(22px,3.5vw,36px);font-weight:700;color:var(--navy);margin-bottom:12px}
 .section-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:600px}
-.section-head{text-align:center;margin-bottom:56px}
+.section-head{text-align:center;margin-bottom:48px}
 .section-head .section-sub{margin:0 auto}
+html{scroll-padding-top:68px}
 
 /* ===== GRID ===== */
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
@@ -137,34 +138,50 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 
 /* Pakuo floating button */
 .pakuo-float{
-  position:fixed;bottom:28px;right:28px;z-index:500;
+  position:fixed;bottom:90px;right:20px;z-index:500;
   background:var(--coral);color:var(--white);border:none;border-radius:50px;
-  padding:14px 22px;font-size:14px;font-weight:700;cursor:pointer;
+  padding:12px 18px;font-size:13px;font-weight:700;cursor:pointer;
   box-shadow:0 6px 24px rgba(232,97,74,.45);
-  display:flex;align-items:center;gap:10px;transition:.3s;
+  display:flex;align-items:center;gap:8px;transition:.3s;
 }
 .pakuo-float:hover{background:var(--coral-dark);transform:translateY(-3px);box-shadow:0 10px 32px rgba(232,97,74,.5)}
-.pakuo-float .pakuo-avatar{font-size:24px}
+.pakuo-float .pakuo-avatar{font-size:20px}
 .pakuo-bubble{
-  position:fixed;bottom:90px;right:28px;z-index:499;
+  position:fixed;bottom:152px;right:20px;z-index:499;
   background:var(--white);border:2px solid var(--coral);border-radius:16px;
-  padding:12px 18px;font-size:13px;max-width:220px;
+  padding:12px 16px;font-size:13px;max-width:200px;
   box-shadow:0 4px 20px rgba(0,0,0,.12);
   animation:fadein .4s ease;
 }
-.pakuo-bubble::after{content:'';position:absolute;bottom:-10px;right:32px;border:5px solid transparent;border-top-color:var(--coral)}
+.pakuo-bubble::after{content:'';position:absolute;bottom:-10px;right:24px;border:5px solid transparent;border-top-color:var(--coral)}
 @keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Mobile sticky CTA bar */
+.mobile-cta-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:400;
+  background:var(--white);border-top:2px solid var(--border);
+  padding:10px 16px;gap:10px;
+  box-shadow:0 -4px 20px rgba(0,0,0,.1);
+}
+.mobile-cta-bar a{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 8px;border-radius:10px;font-size:13px;font-weight:700;
+  text-align:center;min-height:48px;
+}
+.mobile-cta-bar .mcta-call{background:var(--navy);color:var(--white)}
+.mobile-cta-bar .mcta-line{background:#06c755;color:var(--white)}
+.mobile-cta-bar .mcta-est{background:var(--coral);color:var(--white)}
 
 /* ===========================
    SECTION 3: 訴求1 感情
 =========================== */
 #appeal1{background:var(--bg)}
-.appeal-card{background:var(--white);border-radius:var(--radius);padding:40px 32px;border-left:4px solid var(--blue);transition:.3s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.appeal-card{background:var(--white);border-radius:var(--radius);padding:32px 24px;border-left:4px solid var(--blue);transition:.3s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .appeal-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.1);border-left-color:var(--coral)}
-.appeal-icon{font-size:52px;margin-bottom:20px;display:block}
-.appeal-card h3{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.appeal-icon{font-size:44px;margin-bottom:16px;display:block}
+.appeal-card h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:12px}
 .appeal-card p{font-size:14px;color:var(--muted);line-height:1.8}
-.section-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--blue);margin-top:48px;transition:.2s}
+.section-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--blue);margin-top:40px;transition:.2s;min-height:44px}
 .section-link:hover{color:var(--navy);gap:14px}
 
 /* ===========================
@@ -174,7 +191,7 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 #appeal2 .section-eyebrow{color:var(--coral-light)}
 #appeal2 .section-title{color:var(--white)}
 #appeal2 .section-sub{color:rgba(255,255,255,.72)}
-.reason-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:36px 28px;transition:.3s;position:relative;overflow:hidden}
+.reason-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:28px 24px;transition:.3s;position:relative;overflow:hidden}
 .reason-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--coral)}
 .reason-card:hover{background:rgba(255,255,255,.12);transform:translateY(-4px)}
 .reason-num{font-size:56px;font-weight:900;color:var(--coral);opacity:.35;line-height:1;margin-bottom:8px}
@@ -193,11 +210,11 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 .lineup-card-header{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);padding:24px;color:var(--white)}
 .lineup-card-header h3{font-size:20px;font-weight:700;margin-bottom:4px}
 .lineup-card-header .tagline{font-size:12px;opacity:.75}
-.lineup-card-body{padding:24px}
-.lineup-models{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.lineup-card-body{padding:20px}
+.lineup-models{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .lineup-model-tag{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--navy)}
 .lineup-card-body p{font-size:13px;color:var(--muted);line-height:1.7}
-.lineup-btns{display:flex;gap:12px;margin-top:52px;flex-wrap:wrap;justify-content:center}
+.lineup-btns{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;justify-content:center}
 
 /* ===========================
    SECTION 6: 設置事例
@@ -233,17 +250,17 @@ nav{background:var(--white);border-bottom:2px solid var(--blue);position:sticky;
 =========================== */
 #cta-final{
   background:linear-gradient(135deg,var(--coral) 0%,#c44a35 40%,#b03020 100%);
-  color:var(--white);padding:96px 0;
+  color:var(--white);padding:80px 0;
 }
-#cta-final h2{font-size:clamp(26px,4vw,40px);font-weight:700;margin-bottom:16px;text-align:center}
-#cta-final .sub{font-size:17px;opacity:.88;text-align:center;margin-bottom:52px;line-height:1.7}
-.cta-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
-.cta-block{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:36px 24px;text-align:center;transition:.3s;cursor:pointer}
+#cta-final h2{font-size:clamp(22px,4vw,40px);font-weight:700;margin-bottom:16px;text-align:center}
+#cta-final .sub{font-size:16px;opacity:.88;text-align:center;margin-bottom:44px;line-height:1.7}
+.cta-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto}
+.cta-block{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:.3s;cursor:pointer}
 .cta-block:hover{background:rgba(255,255,255,.2);transform:translateY(-4px)}
-.cta-block .cta-icon{font-size:48px;margin-bottom:16px;display:block}
-.cta-block h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.cta-block .cta-icon{font-size:40px;margin-bottom:14px;display:block}
+.cta-block h3{font-size:16px;font-weight:700;margin-bottom:8px}
 .cta-block p{font-size:13px;opacity:.8;margin-bottom:20px;line-height:1.6}
-.cta-block a{display:block;background:var(--white);color:var(--coral);border-radius:8px;padding:12px 20px;font-weight:700;font-size:14px;transition:.2s}
+.cta-block a{display:block;background:var(--white);color:var(--coral);border-radius:8px;padding:14px 20px;font-weight:700;font-size:14px;transition:.2s;min-height:48px;display:flex;align-items:center;justify-content:center}
 .cta-block a:hover{background:var(--navy);color:var(--white)}
 
 /* ===========================
@@ -275,15 +292,79 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
   .case-card:first-child{grid-column:span 1;grid-row:span 1}
   .cta-blocks{grid-template-columns:1fr}
   .message-layout{grid-template-columns:1fr;gap:32px}
-  .message-photo{max-width:220px;margin:0 auto}
+  .message-photo{max-width:200px;margin:0 auto}
   .footer-grid{grid-template-columns:1fr}
 }
 @media(max-width:768px){
-  .section{padding:72px 0}
+  .section{padding:56px 0}
+  .container{padding:0 16px}
   .nav-links{display:none}
   .hamburger{display:flex}
   .cases-grid{grid-template-columns:1fr}
   .footer-bottom{justify-content:center;text-align:center}
+
+  /* Hero mobile */
+  #hero{min-height:100svh}
+  .hero-content{padding:24px 20px}
+  .hero-eyebrow{font-size:10px;letter-spacing:.25em;margin-bottom:12px}
+  .hero-title{font-size:clamp(28px,8vw,40px);margin-bottom:14px}
+  .hero-sub{font-size:14px;margin-bottom:28px}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:300px;margin:0 auto 28px}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .btn-lg{padding:16px 20px;font-size:15px}
+  .hero-scroll{display:none}
+
+  /* Appeal cards mobile */
+  .appeal-card{padding:24px 20px}
+  .appeal-icon{font-size:36px;margin-bottom:12px}
+  .appeal-card h3{font-size:17px}
+  .grid-2{gap:16px}
+  .section-link{margin-top:28px}
+
+  /* Reason cards mobile */
+  .reason-num{font-size:40px}
+  .reason-card h3{font-size:16px}
+  .grid-3{gap:16px}
+
+  /* Lineup mobile */
+  .lineup-card-header{padding:18px 20px}
+  .lineup-card-header h3{font-size:17px}
+  .lineup-btns{flex-direction:column;align-items:stretch}
+  .lineup-btns .btn{width:100%;justify-content:center}
+
+  /* Cases mobile */
+  .cases-grid{grid-template-columns:1fr;gap:14px}
+
+  /* Message mobile */
+  .message-body .lead{font-size:17px}
+  .message-body p{font-size:14px}
+
+  /* CTA final mobile */
+  #cta-final{padding:56px 0 80px}
+  #cta-final h2{font-size:22px}
+  #cta-final .sub{font-size:14px;margin-bottom:32px}
+  .cta-blocks{gap:16px}
+  .cta-block{padding:24px 16px}
+
+  /* Footer mobile */
+  footer{padding:40px 0 24px}
+  .footer-grid{gap:28px}
+  .footer-brand img{height:36px}
+
+  /* Pakuo mobile: icon only */
+  .pakuo-float{bottom:80px;right:16px;padding:12px;border-radius:50%;width:52px;height:52px;justify-content:center}
+  .pakuo-float span:last-child{display:none}
+  .pakuo-float .pakuo-avatar{font-size:22px;margin:0}
+  .pakuo-bubble{bottom:140px;right:16px;max-width:180px;font-size:12px}
+
+  /* Mobile sticky CTA bar */
+  .mobile-cta-bar{display:flex}
+}
+@media(max-width:380px){
+  .hero-title{font-size:26px}
+  .section-title{font-size:20px}
+  .appeal-card{padding:20px 16px}
+  .container{padding:0 12px}
 }
 </style>
 </head>
@@ -388,6 +469,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.75);padding:56px 0 28px}
   </div>
   <div class="hero-scroll">SCROLL</div>
 </section>
+
+<!-- モバイル固定CTAバー -->
+<div class="mobile-cta-bar">
+  <a href="tel:098-856-6666" class="mcta-call">📞 電話する</a>
+  <a href="https://lin.ee/xxxxxx" target="_blank" rel="noopener" class="mcta-line">💬 LINE</a>
+  <a href="https://hideo-t.github.io/phoka/contact/" class="mcta-est">📋 見積もり</a>
+</div>
 
 <!-- パクオ君 フローティングボタン -->
 <button class="pakuo-float" onclick="alert('パクオ君チャット機能は近日公開予定です！\nお急ぎの方はLINEまたはお電話にてお問い合わせください。\n☎ 098-856-6666')" aria-label="AIパクオ君に相談">
